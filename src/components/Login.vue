@@ -28,7 +28,7 @@
               <div class="imput-text">
                 <div class="col-md-4">
                   <label for="email" class="form-label">Email</label>
-                  <input
+                  <input v-model="email"
                     type="email"
                     class="form-control form-login"
                     id="email"
@@ -45,7 +45,7 @@
                     ></a>
                   </div>
                   <input
-                    type="password"
+                    type="password" v-model="password"
                     class="form-control form-login"
                     id="contraseña"
                     aria-describedby="contraseña"
@@ -57,7 +57,7 @@
                     >
                   </div>
                   <div>
-                    <button v-on:click="validarCampos()" class="btn btn-acceder">Acceder</button>
+                    <button type="submit" v-on:click="validarCampos" class="btn btn-acceder">Acceder</button>
                   </div>
                 </div>
                 <div class="register">
@@ -67,6 +67,7 @@
                     <img src="../assets/img/line-register.png" alt="Linea" />
                   </p>
                 </div>
+                {{data}}
                 <div class="sociales">
                   <i class="bx bxl-instagram icon-social"></i>
                   <i class="bx bxl-twitter icon-social"></i>
@@ -116,15 +117,18 @@ export default {
 
 
       validarCampos() {
+
+        const Swal = require('sweetalert2')
         if (this.email == "" || this.password == "") {
-          this.swal({
+          Swal({
+            
             title: "Error",
             text: "Por favor, llena todos los campos",
             icon: "error",
             button: "Aceptar",
           });
         } else {
-          this.swal({
+          Swal({
             title: "Bienvenido",
             text: "Has iniciado sesión correctamente",
             icon: "success",
